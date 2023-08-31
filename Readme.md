@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Оксана Александрова](https://up.htmlacademy.ru/javascript-individual/1/user/2213829).
-* Наставник: `Неизвестно`.
+- Студент: [Оксана Александрова](https://up.htmlacademy.ru/javascript-individual/1/user/2213829).
+- Наставник: `Артур Галимов`.
 
 ---
 
