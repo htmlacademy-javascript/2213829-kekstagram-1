@@ -1,7 +1,4 @@
-import {
-  getRandomInteger,
-  getRandomArrayElement
-} from './utils.js'
+import { getRandomInteger, getRandomArrayElement } from "./utils.js";
 
 const PHOTO_DESCRIPTION_COUNT = 25;
 
@@ -62,16 +59,16 @@ const Commentators = [
 const getRandomComment = () => {
   const comment = {
     id: getRandomInteger(IDs.MIN, IDs.MAX),
-    avatar: 'img/avatar-' + getRandomInteger(AVATARS.MIN, AVATARS.MAX) + '.svg',
+    avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
     message: getRandomArrayElement(Messages),
     name: getRandomArrayElement(Commentators),
-  }
+  };
   return comment;
 };
 
 const getComments = () => {
-  let comments = [];
-  for (let i = 1; i <= getRandomInteger(1, 10); i ++) {
+  const comments = [];
+  for (let i = 1; i <= getRandomInteger(1, 10); i++) {
     comments.push(getRandomComment());
   }
   return comments;
@@ -83,7 +80,7 @@ const getPhotoDescription = () => {
   for (let i = 1; i <= PHOTO_DESCRIPTION_COUNT; i++) {
     photoDescriptions.push({
       id: i,
-      avatar: 'photos/' + i + '.jpg',
+      avatar: `photos/${i}.jpg"`,
       description: getRandomArrayElement(Description),
       likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
       comments: getComments(),
@@ -92,7 +89,3 @@ const getPhotoDescription = () => {
 };
 
 getPhotoDescription();
-
-// export {
-// photoDescriptions,
-// }
