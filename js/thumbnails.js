@@ -1,5 +1,3 @@
-/* global _:readonly */
-
 import { getData } from "./fetch.js";
 import { renderPictureClickHandler } from "./to-full.js";
 import { getNewRandomArray } from "./utils.js";
