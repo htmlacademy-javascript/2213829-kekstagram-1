@@ -1,7 +1,7 @@
 import {
   getRandomInteger,
   getRandomArrayElement
-} from './utils.js'
+} from './utils.js';
 
 const PHOTO_DESCRIPTION_COUNT = 25;
 
@@ -83,16 +83,10 @@ const getPhotoDescription = () => {
   for (let i = 1; i <= PHOTO_DESCRIPTION_COUNT; i++) {
     photoDescriptions.push({
       id: i,
-      avatar: 'photos/' + i + '.jpg',
+      avatar: `photos/${i}.jpg`,
       description: getRandomArrayElement(Description),
       likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
       comments: getComments(),
     });
   }
 };
-
-getPhotoDescription();
-
-// export {
-// photoDescriptions,
-// }
