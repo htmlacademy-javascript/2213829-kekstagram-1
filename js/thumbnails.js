@@ -71,8 +71,8 @@ getData((photos) => {
     };
 
     const compareCommentsQuantity = (photoI, photoJ) => {
-      let commentsQuantity_i = getPhotosCommentsQuantity(photoI);
-      let commentsQuantity_j = getPhotosCommentsQuantity(photoJ);
+      let commentsQuantityI = getPhotosCommentsQuantity(photoI);
+      let commentsQuantityJ = getPhotosCommentsQuantity(photoJ);
 
       return commentsQuantityJ - commentsQuantityI;
     };
