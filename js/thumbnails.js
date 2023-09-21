@@ -70,11 +70,11 @@ getData((photos) => {
       return photo.comments.length;
     };
 
-    const compareCommentsQuantity = (photo_i, photo_j) => {
-      let commentsQuantity_i = getPhotosCommentsQuantity(photo_i);
-      let commentsQuantity_j = getPhotosCommentsQuantity(photo_j);
+    const compareCommentsQuantity = (photoI, photoJ) => {
+      let commentsQuantity_i = getPhotosCommentsQuantity(photoI);
+      let commentsQuantity_j = getPhotosCommentsQuantity(photoJ);
 
-      return commentsQuantity_j - commentsQuantity_i;
+      return commentsQuantityJ - commentsQuantityI;
     };
 
     let discussedPhotos = photos.slice().sort(compareCommentsQuantity);
