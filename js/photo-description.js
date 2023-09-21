@@ -1,3 +1,4 @@
+
 import { getRandomInteger, getRandomArrayElement } from "./utils.js";
 
 const PHOTO_DESCRIPTION_COUNT = 25;
@@ -88,4 +89,6 @@ const getPhotoDescription = () => {
   }
 };
 
+
 getPhotoDescription();
+
