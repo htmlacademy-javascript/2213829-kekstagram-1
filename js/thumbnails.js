@@ -1,31 +1,29 @@
-import { getData } from "./fetch.js";
-import { renderPictureClickHandler } from "./to-full.js";
-import { getNewRandomArray } from "./utils.js";
+import { getData } from './fetch.js';
+import { renderPictureClickHandler } from './to-full.js';
+import { getNewRandomArray } from './utils.js';
 
 const RANDOM_FILTER_PHOTOS_QUANTITY = 10;
 
-const picturesContainer = document.querySelector(".pictures");
-const pictureTemplate = document
-  .querySelector("#picture")
-  .content.querySelector(".picture");
+const picturesContainer = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
-const defaultFilterButton = document.querySelector("#filter-default");
-const randomFilterButton = document.querySelector("#filter-random");
-const discussedFilterButton = document.querySelector("#filter-discussed");
+const defaultFilterButton = document.querySelector('#filter-default');
+const randomFilterButton = document.querySelector('#filter-random');
+const discussedFilterButton = document.querySelector('#filter-discussed');
 
 const showFiltering = () => {
-  const imgFilterSection = document.querySelector(".img-filters");
+  const imgFilterSection = document.querySelector('.img-filters');
 
-  imgFilterSection.classList.remove("img-filters--inactive");
-};
+  imgFilterSection.classList.remove('img-filters--inactive');
+}
 
 const renderUserPhotos = (photos) => {
+
   photos.forEach((photo) => {
     const newPicture = pictureTemplate.cloneNode(true);
-    newPicture.querySelector("img").src = photo.url;
-    newPicture.querySelector(".picture__likes").textContent = photo.likes;
-    newPicture.querySelector(".picture__comments").textContent =
-      photo.comments.length;
+    newPicture.querySelector('img').src = photo.url;
+    newPicture.querySelector('.picture__likes').textContent = photo.likes;
+    newPicture.querySelector('.picture__comments').textContent = photo.comments.length;
     renderPictureClickHandler(photo, newPicture);
     picturesFragment.appendChild(newPicture);
   });
@@ -37,43 +35,34 @@ getData((photos) => {
   showFiltering();
 
   const onDefaultButtonClick = () => {
-    picturesContainer.querySelectorAll("a").forEach((item) => {
+    picturesContainer.querySelectorAll('a').forEach(item => {
       picturesContainer.removeChild(item);
     });
     renderUserPhotos(photos);
   };
 
-  defaultFilterButton.addEventListener(
-    "click",
-    _.debounce(onDefaultButtonClick, 500)
-  );
-  defaultFilterButton.addEventListener("click", () => {
-    defaultFilterButton.classList.add("img-filters__button--active");
-    randomFilterButton.classList.remove("img-filters__button--active");
-    discussedFilterButton.classList.remove("img-filters__button--active");
+  defaultFilterButton.addEventListener('click', _.debounce(onDefaultButtonClick, 500));
+  defaultFilterButton.addEventListener('click', () => {
+    defaultFilterButton.classList.add('img-filters__button--active');
+    randomFilterButton.classList.remove('img-filters__button--active');
+    discussedFilterButton.classList.remove('img-filters__button--active');
   });
 
   const onRandomButtonClick = () => {
-    picturesContainer.querySelectorAll("a").forEach((item) => {
+    picturesContainer.querySelectorAll('a').forEach(item => {
       picturesContainer.removeChild(item);
     });
 
-    const randomArray = getNewRandomArray(
-      photos,
-      RANDOM_FILTER_PHOTOS_QUANTITY
-    );
+    const randomArray = getNewRandomArray(photos, RANDOM_FILTER_PHOTOS_QUANTITY);
 
     renderUserPhotos(randomArray);
   };
 
-  randomFilterButton.addEventListener(
-    "click",
-    _.debounce(onRandomButtonClick, 500)
-  );
-  randomFilterButton.addEventListener("click", () => {
-    defaultFilterButton.classList.remove("img-filters__button--active");
-    randomFilterButton.classList.add("img-filters__button--active");
-    discussedFilterButton.classList.remove("img-filters__button--active");
+  randomFilterButton.addEventListener('click', _.debounce(onRandomButtonClick, 500));
+  randomFilterButton.addEventListener('click', () => {
+    defaultFilterButton.classList.remove('img-filters__button--active');
+    randomFilterButton.classList.add('img-filters__button--active');
+    discussedFilterButton.classList.remove('img-filters__button--active');
   });
 
   const onDiscussedButtonClick = () => {
@@ -81,31 +70,31 @@ getData((photos) => {
       return photo.comments.length;
     };
 
-    const compareCommentsQuantity = (photoI, photoJ) => {
-      let commentsQuantityI = getPhotosCommentsQuantity(photoI);
-      let commentsQuantityJ = getPhotosCommentsQuantity(photoJ);
+    const compareCommentsQuantity = (photo_i, photo_j) => {
+      let commentsQuantity_i = getPhotosCommentsQuantity(photo_i);
+      let commentsQuantity_j = getPhotosCommentsQuantity(photo_j);
 
-      return commentsQuantityJ - commentsQuantityI;
+      return commentsQuantity_j - commentsQuantity_i;
     };
 
     let discussedPhotos = photos.slice().sort(compareCommentsQuantity);
 
-    picturesContainer.querySelectorAll("a").forEach((item) => {
+    picturesContainer.querySelectorAll('a').forEach(item => {
       picturesContainer.removeChild(item);
     });
 
     renderUserPhotos(discussedPhotos);
   };
 
-  discussedFilterButton.addEventListener(
-    "click",
-    _.debounce(onDiscussedButtonClick, 500)
-  );
-  discussedFilterButton.addEventListener("click", () => {
-    defaultFilterButton.classList.remove("img-filters__button--active");
-    randomFilterButton.classList.remove("img-filters__button--active");
-    discussedFilterButton.classList.add("img-filters__button--active");
+  discussedFilterButton.addEventListener('click', _.debounce(onDiscussedButtonClick, 500));
+  discussedFilterButton.addEventListener('click', () => {
+    defaultFilterButton.classList.remove('img-filters__button--active');
+    randomFilterButton.classList.remove('img-filters__button--active');
+    discussedFilterButton.classList.add('img-filters__button--active');
   });
 });
 
-export { renderUserPhotos, showFiltering };
+export {
+  renderUserPhotos,
+  showFiltering
+}
