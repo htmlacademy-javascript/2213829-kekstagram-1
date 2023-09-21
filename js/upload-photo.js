@@ -8,7 +8,7 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const uploadInput = document.querySelector('#upload-file');
 const preview = document.querySelector('.img-upload__preview img');
 const uploadOverlayForm = document.querySelector('.img-upload__overlay');
-const effectsPreviews = document.querySelectorAll('.effects__preview')
+const effectsPreviews = document.querySelectorAll('.effects__preview');
 const uploadCancelButton = document.querySelector('#upload-cancel');
 const descriptionText = document.querySelector('.text__description');
 const hashtagInput = document.querySelector('.text__hashtags');
@@ -20,7 +20,51 @@ const scaleControl = scale.querySelector('.scale__control--value');
 const imageUploadPreview = document.querySelector('.img-upload__preview');
 
 initializeSlider();
+const onClickAndKeydownHandler = (evt) => {
+  if (
+    evt.target !== successMessage.querySelector(".success__inner") ||
+    isEscEvent(evt)
+  ) {
+    removeSuccessWindow();
+  }
+};
+const resetOptions = () => {
+  document.querySelector(".img-upload__preview img").style.transform = 1;
+  document.querySelector(".img-upload__preview img").className = "";
+  document.querySelector(".img-upload__preview img").style.filter = "none";
+  document.querySelector(".img-upload__effect-level").classList.add("hidden");
+  document.querySelector(".effects__radio:first-child").checked = "true";
+  uploadInput.value = null;
+  descriptionText.value = null;
+  hashtagInput.value = null;
+};
+const rescale = () => {
+  scaleControl.value = "100%";
+  let scaleControlValue = parseInt(scaleControl.value) / 100;
 
+  const transformPhoto = (scaleControlValue) => {
+    imageUploadPreview.querySelector(
+      "img"
+    ).style.transform = `scale(${scaleControlValue})`;
+  };
+  transformPhoto(scaleControlValue);
+
+  smallerButton.addEventListener("click", () => {
+    if (scaleControlValue > 0.25) {
+      scaleControlValue -= 0.25;
+    }
+    scaleControl.value = `${scaleControlValue} * ${100}%`;
+    transformPhoto(scaleControlValue);
+  });
+
+  biggerButton.addEventListener("click", () => {
+    if (scaleControlValue < 1) {
+      scaleControlValue += 0.25;
+    }
+    scaleControl.value = `${scaleControlValue} * ${100}%`;
+    transformPhoto(scaleControlValue);
+  });
+};
 const uploadFile = () => {
 
   const escPressed = (evt) => {
@@ -35,7 +79,7 @@ const uploadFile = () => {
     }
     element.onblur = () => {
       document.addEventListener('keydown', escPressed);
-    }
+    };
   };
 
   exceptEscPressed(hashtagInput);
@@ -69,9 +113,9 @@ const uploadFile = () => {
 
         reader.addEventListener('load', () => {
           preview.src = reader.result;
-          effectsPreviews.forEach(item => {
+          effectsPreviews.forEach((item) => {
             item.style.backgroundImage = `url('${reader.result}')`;
-          })
+          });
         });
         reader.readAsDataURL(file);
         openUploadOverlay();
@@ -87,16 +131,7 @@ const uploadFile = () => {
     closeUploadOverlay();
   });
 
-  const resetOptions = () => {
-    document.querySelector('.img-upload__preview img').style.transform = 1;
-    document.querySelector('.img-upload__preview img').className = '';
-    document.querySelector('.img-upload__preview img').style.filter = 'none';
-    document.querySelector('.img-upload__effect-level').classList.add('hidden');
-    document.querySelector('.effects__radio:first-child').checked = 'true';
-    uploadInput.value = null;
-    descriptionText.value = null;
-    hashtagInput.value = null;
-  };
+  
 
 
   const manageSuccessWindow = () => {
@@ -109,12 +144,7 @@ const uploadFile = () => {
       document.removeEventListener('keydown', onClickAndKeydownHandler);
     };
 
-    const onClickAndKeydownHandler = (evt) => {
-      if (evt.target !== successMessage.querySelector('.success__inner') || isEscEvent(evt)) {
-        removeSuccessWindow();
-      }
-    };
-
+    
     document.addEventListener('keydown', onClickAndKeydownHandler);
     document.addEventListener('click', onClickAndKeydownHandler);
 
@@ -168,31 +198,7 @@ const uploadFile = () => {
   setUserFormSubmit();
 };
 
-const rescale = () => {
-  scaleControl.value = '100%';
-  let scaleControlValue = parseInt(scaleControl.value) / 100;
 
-  const transformPhoto = (scaleControlValue) => {
-    imageUploadPreview.querySelector('img').style.transform = `scale(${scaleControlValue})`;
-  };
-  transformPhoto(scaleControlValue);
-
-  smallerButton.addEventListener('click', () => {
-    if (scaleControlValue > 0.25) {
-      scaleControlValue -= 0.25;
-    }
-    scaleControl.value = scaleControlValue * 100 + '%';
-    transformPhoto(scaleControlValue);
-  });
-
-  biggerButton.addEventListener('click', () => {
-    if (scaleControlValue < 1) {
-      scaleControlValue += 0.25;
-    }
-    scaleControl.value = scaleControlValue * 100 + '%';
-    transformPhoto(scaleControlValue);
-  });
-};
 
 export {
   uploadFile
