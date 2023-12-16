@@ -7,7 +7,6 @@ function getRandomInt(a, b) {
   return Math.floor(result);
 }
 
-// функция для генерации случайного комментария
 function generateComment() {
   const randomIndex = getRandomInt(0, messages.length - 1);
   return {
@@ -18,7 +17,6 @@ function generateComment() {
   };
 }
 
-// функция для генерации массива из 25 объектов
 function generateData() {
   const data = [];
   const ids = new Set();
@@ -44,7 +42,6 @@ function generateData() {
   return data;
 }
 
-// генерация массива из 25 объектов
 const dataArray = generateData();
 
 export { dataArray };
