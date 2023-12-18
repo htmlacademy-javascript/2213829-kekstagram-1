@@ -1,12 +1,36 @@
-import { setEventListener } from "./open-picture.js";
 import { getData } from "../../helpers/api.js";
 import { debounce, showErrorNotification } from "../../helpers/util.js";
-import { getDiscussedPictures, getRandomPictures } from "./filters-pictures.js";
 
 const pictureTemplate = document.querySelector("#picture").content;
 const pictureSelector = ".picture";
 const picturesElement = document.querySelector(".pictures");
+const getDiscussedPictures = (pictures) => {
+  return [...pictures].sort(comparePictures);
+};
+const getRandomPictures = (pictures, quantity) => {
+  const listPicture = [];
 
+  while (listPicture.length < quantity) {
+    const randomValue = getRandomInteger(0, pictures.length - 1);
+
+    if (listPicture.indexOf(pictures[randomValue]) === -1) {
+      listPicture.push(pictures[randomValue]);
+    }
+  }
+
+  return listPicture;
+};
+const getData = (onSuccess, onFail) => {
+  fetch(Urls.GET)
+    .then((response) => handleError(response, onFail))
+    .then((result) => onSuccess(result))
+    .catch(() => {
+      onFail("Произошла ошибка при загрузке данных. Попробуйте ещё раз");
+    });
+};
+const setEventListener = (element, item) => {
+  element.addEventListener("click", openPicture(item));
+};
 const getTemplate = (templateElement, itemSelector) => {
   return templateElement.querySelector(itemSelector).cloneNode(true);
 };
