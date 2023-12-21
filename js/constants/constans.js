@@ -1,3 +1,4 @@
+
 const messages = [
   "Всё отлично!",
   "В целом всё неплохо. Но не всё.",
@@ -40,3 +41,12 @@ export {
   MESSAGES_COMMENTS_COUNT,
   BIG_PICTURE_CONFIG,
 };
+=======
+
+const names = ["Иван", "Алексей", "Светлана", "Мария", "Дмитрий", "Елена"];
+
+export { names, messages, COMMENTS_COUNT,
+  PHOTOS_COUNT,
+  MESSAGES_COMMENTS_COUNT,
+  BIG_PICTURE_CONFIG, };
+
