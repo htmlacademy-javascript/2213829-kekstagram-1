@@ -8,7 +8,45 @@ const messages = [
   "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!",
 ];
 
+const names = ["Иван", "Алексей", "Светлана", "Мария", "Дмитрий", "Елена"];
+const COMMENTS_COUNT = {
+  MIN: 1,
+  MAX: 18,
+};
+const PHOTOS_COUNT = 25;
+
+const MESSAGES_COMMENTS_COUNT = {
+  MIN: 1,
+  MAX: 2,
+};
+
+const BIG_PICTURE_CONFIG = {
+  bigPictureSelector: ".big-picture",
+  bigPictureImageSelector: ".big-picture__img img",
+  likesCountSelector: ".likes-count",
+  commentsCountSelector: ".comments-count",
+  socialCommentSelector: ".social__comment",
+  socialListCommentSelector: ".social__comments",
+  socialCaptionSelector: ".social__caption",
+  closeButtonSelector: ".big-picture__cancel",
+  socialCommentCountSelector: ".social__comment-count",
+  commentsLoaderSelector: ".comments-loader",
+};
+
+export {
+  names,
+  messages,
+  COMMENTS_COUNT,
+  PHOTOS_COUNT,
+  MESSAGES_COMMENTS_COUNT,
+  BIG_PICTURE_CONFIG,
+};
+=======
 
 const names = ["Иван", "Алексей", "Светлана", "Мария", "Дмитрий", "Елена"];
 
-export { names, messages };
+export { names, messages, COMMENTS_COUNT,
+  PHOTOS_COUNT,
+  MESSAGES_COMMENTS_COUNT,
+  BIG_PICTURE_CONFIG, };
+
