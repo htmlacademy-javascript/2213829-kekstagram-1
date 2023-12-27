@@ -1,6 +1,6 @@
 import { getData } from "../../helpers/api.js";
 import { debounce, showErrorNotification } from "../../helpers/util.js";
-
+// Наложение фильтров на изображения
 const pictureTemplate = document.querySelector("#picture").content;
 const pictureSelector = ".picture";
 const picturesElement = document.querySelector(".pictures");
