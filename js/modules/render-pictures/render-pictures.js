@@ -6,7 +6,7 @@ import { getDiscussedPictures, getRandomPictures } from './filters-pictures.js';
 const pictureTemplate = document.querySelector('#picture').content;
 const pictureSelector = '.picture';
 const picturesElement = document.querySelector('.pictures');
-// Получить шаблоны
+
 const getTemplate = (templateElement, itemSelector) => {
   return templateElement.querySelector(itemSelector).cloneNode(true);
 };
