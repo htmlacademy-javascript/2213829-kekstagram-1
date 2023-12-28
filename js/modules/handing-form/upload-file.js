@@ -24,7 +24,7 @@ const imgUploadEl = document.querySelector('.img-upload__form');
 const uploadLabelEl = document.querySelector('.img-upload__label');
 const imagePreview = imageUploadPreview.querySelector('img');
 const effectsPreviewElements = editFormEl.querySelectorAll('.effects__preview');
-// Изменение размера
+
 const changeSize = (evt) => {
   let valueEl = Number(scaleControlValueEl.value.slice(0, -1));
 
