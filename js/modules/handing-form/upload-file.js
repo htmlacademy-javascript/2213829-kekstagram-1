@@ -133,7 +133,7 @@ const setEffect = (evt) => {
       break;
   }
 };
-
+// Изменение эффекта
 const changeEffect = (evt) => {
   if (evt.target.matches('.effects__radio')) {
     imagePreviewEl.className = '';
