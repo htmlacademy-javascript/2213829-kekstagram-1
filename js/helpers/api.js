@@ -40,5 +40,5 @@ const getData = (onSuccess, onFail) => {
 
 export {
   sendPhoto,
-  getData,
+  getData
 }

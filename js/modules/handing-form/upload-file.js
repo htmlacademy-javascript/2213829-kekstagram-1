@@ -5,7 +5,7 @@ import {
   hideLoading,
   showError,
   showLoading,
-  showSuccess,
+  showSuccess
 } from '../common/tooltip.js';
 
 const fileInputEl = document.querySelector('#upload-file');
@@ -144,7 +144,7 @@ const changeEffect = (evt) => {
 
 const handleEffectImage = () => {
   effectsItemEls.forEach((item) =>
-    item.addEventListener('click', changeEffect)
+    item.addEventListener('click', changeEffect),
   );
 };
 
@@ -183,7 +183,7 @@ const openForm = (modalEl, closeButtonEl, inputEl) => {
   document.addEventListener(
     'keydown',
     (evt) => handleEscClose(evt, modalEl, inputEl),
-    { once: true }
+    { once: true },
   );
 };
 
@@ -212,9 +212,9 @@ const handleDataSending = (evt) => {
       closeForm(editFormEl);
       showErrorNotification, showError();
       hideLoading();
-    }
+    },
   );
 };
 
-imgUploadEl.addEventListener('submit', handleDataSending);
+imgUploadEl.addEventListener('input', handleDataSending);
 fileInputEl.addEventListener('input', openEditForm);
