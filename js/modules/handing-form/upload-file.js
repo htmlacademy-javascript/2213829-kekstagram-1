@@ -21,7 +21,6 @@ const effectLevelValue = document.querySelector('.effect-level__value');
 const effectLavelWrapper = document.querySelector('.img-upload__effect-level');
 const bodyEl = document.querySelector('body');
 const imgUploadEl = document.querySelector('.img-upload__form');
-const uploadLabelEl = document.querySelector('.img-upload__label');
 const imagePreview = imageUploadPreview.querySelector('img');
 const effectsPreviewElements = editFormEl.querySelectorAll('.effects__preview');
 
@@ -190,7 +189,6 @@ const openForm = (modalEl, closeButtonEl, inputEl) => {
 const openEditForm = () => {
   removeSlider();
   openForm(editFormEl, resetButtonEl, fileInputEl);
-
   handleScaleControlImage();
   handleEffectImage();
 };
@@ -205,7 +203,7 @@ const handleDataSending = (evt) => {
     () => {
       closeForm(editFormEl);
       showSuccess();
-      uploadLabelEl.remove();
+
       hideLoading();
     },
     () => {
@@ -216,5 +214,5 @@ const handleDataSending = (evt) => {
   );
 };
 
-imgUploadEl.addEventListener('input', handleDataSending);
+imgUploadEl.addEventListener('submit', handleDataSending);
 fileInputEl.addEventListener('input', openEditForm);
