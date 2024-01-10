@@ -189,7 +189,6 @@ const openForm = (modalEl, closeButtonEl, inputEl) => {
 const openEditForm = () => {
   removeSlider();
   openForm(editFormEl, resetButtonEl, fileInputEl);
-
   handleScaleControlImage();
   handleEffectImage();
 };
